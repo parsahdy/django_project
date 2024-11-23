@@ -11,20 +11,24 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class FileSerializer(serializers.ModelSerializer):
+    file_type = serializers.SerializerMethodField()
+
     class Meta:
         model = File
-        fields = ('title', 'file')
+        fields = ('id', 'title', 'file', 'file_type')
+
+    def get_file_type(self, obj):
+        return obj.get_file_type_display()
 
 
-
-class ProductSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
     categories = CategorySerializer(many=True)
     files = FileSerializer(many=True)
-    #foo = serializers.SerializerMethodField()
+    #foo = serializers.SerializerMethodField() 
 
     class Meta:
         model = Product
-        fields = ('title', 'description', 'avatar', 'categories', 'files') 
+        fields = ('title', 'description', 'avatar', 'categories', 'files', 'url') 
 
 
     #def get_foo(aelf, obj):
