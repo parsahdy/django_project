@@ -13,6 +13,7 @@ class Package(models.Model):
     is_enable = models.BooleanField(_('is enable'), default=True)
     price = models.PositiveBigIntegerField(_('price'))
     duration = models.DurationField(_('duration'), blank=True, null=True)
+    #getway = models.ManyToManyField('payments.Getway')
     created_time = models.DateTimeField(_('created time'), auto_now_add=True)
     updated_time = models.DateTimeField(_('updated time'), auto_now=True)
 
@@ -22,6 +23,9 @@ class Package(models.Model):
         verbose_name = _('package')
         verbose_name_plural = _('packages')
 
+    
+    def __str__(self):
+        return self.title
 
 
 class Subscription(models.Model):
