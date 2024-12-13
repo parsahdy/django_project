@@ -23,12 +23,12 @@ class FileSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     categories = CategorySerializer(many=True)
-    files = FileSerializer(many=True)
+    #files = FileSerializer(many=True)
     #foo = serializers.SerializerMethodField() 
 
     class Meta:
         model = Product
-        fields = ('title', 'description', 'avatar', 'categories', 'files', 'url') 
+        fields = ('title', 'description', 'avatar', 'categories', 'url') 
 
 
     #def get_foo(aelf, obj):
